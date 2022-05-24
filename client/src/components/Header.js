@@ -1,7 +1,16 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const handleHumberger = () => document.querySelector('#navbar').classList.toggle('active');
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/");
+    }
+
     return (
         <nav id="navbar" >
             <div className="navbarLeft">
@@ -9,7 +18,7 @@ const Header = () => {
             </div>
             <div className="navbarRight">
                 <div className="menubar">
-                    <div className="hamburger-menu">
+                    <div className="hamburger-menu" onClick={handleHumberger}>
                         <div className="bar"></div>
                     </div>
                 </div>
@@ -20,6 +29,7 @@ const Header = () => {
                         <li><Link to="/appointments" className="nav__link">My Appointment</Link></li>
                         <li><Link to="/login" className="nav__link">Login</Link></li>
                         <li><Link to="/signup" className="nav__link">Signup</Link></li>
+                        <li><Link to="/" className="nav__link" onClick={handleLogout}>Logout</Link></li>
                     </ul>
                 </div>
             </div>

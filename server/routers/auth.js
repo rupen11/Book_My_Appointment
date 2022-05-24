@@ -6,7 +6,6 @@ const fasttosms = require('fast-two-sms');
 const authentication = require('../middleware/authentication');
 const Otp = require('../models/otp');
 const Users = require('../models/users');
-const ActiveUsers = require('../models/Activeusers');
 
 router.post('/sendotp', [
     // Authentication using express-validator

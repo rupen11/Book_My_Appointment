@@ -158,7 +158,7 @@ animation-iteration-count: 1;
 
 #imageSlider .slider img{
   width: 100%;
-  height: inherit;
+  height: 80vh;
   object-fit: fill;
 }
 
