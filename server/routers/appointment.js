@@ -7,7 +7,7 @@ const Details = require('../models/Details');
 router.post('/bookanappointment', authentication, async (req, res) => {
     try {
         const user = await Users.findOne({ number: req.number });
-        if (!user) return res.status("User Not Registered");
+        if (!user) return res.status(400).json("User Not Registered");
 
         const createBooking = new Appointment({
             user: req.id,
@@ -37,8 +37,7 @@ router.get('/appointment', authentication, async (req, res) => {
     try {
         const appointment = await Appointment.find({ user: req.id });
         if (!appointment) return res.status(400).json("No Any Appointment Found");
-
-        res.status(200).json(appointment);
+        return res.status(200).json(appointment);
     }
 
     catch (error) {
@@ -55,6 +54,17 @@ router.get("/getdetails", async (req, res) => {
 
     catch (error) {
         console.log(error);
+    }
+})
+
+router.delete("/cancelAppointment/:id", async (req, res) => {
+    try {
+        const cancelAppointment = await Appointment.findOneAndDelete({ _id: req.params.id });
+        if (!cancelAppointment) return res.status(400).json("Something went wrong to cancel appointment");
+        return res.status(200).json("Apponitment Canceled");
+    }
+    catch (error) {
+        return res.status(400).json(error);
     }
 })
 

@@ -21,13 +21,13 @@ router.post('/sendotp', [
             digits: true, lowerCaseAlphabets: false, specialChars: false, upperCaseAlphabets: false
         });
 
-        const messageSend = await fasttosms.sendMessage({
-            authorization: process.env.API_KEY,
-            message: `${OTP} is your One-Time-Password. Only Valid For 10 Minutes. Please Do Not Share Anyone.`,
-            numbers: [req.body.number]
-        });
+        // const messageSend = await fasttosms.sendMessage({
+        //     authorization: process.env.API_KEY,
+        //     message: `${OTP} is your One-Time-Password. Only Valid For 10 Minutes. Please Do Not Share Anyone.`,
+        //     numbers: [req.body.number]
+        // });
 
-        if (!messageSend.return) return res.status(400).json("Something went wrong message not send");
+        // if (!messageSend.return) return res.status(400).json(messageSend);
 
         console.log(OTP);
 

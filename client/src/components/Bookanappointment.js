@@ -8,7 +8,7 @@ const Bookanappointment = () => {
     const [hospital, setHospital] = useState([]);
     const [doctor, setDoctor] = useState([]);
     const [appointment, setAppointment] = useState({
-        name: "", age: "", email: "abc@gmail.com", number: "1234567890", city: "", hospital: "", doctor: "", time: "", address: "Vastral, Ahmedabad", appointmentid: "11222"
+        name: "", age: "", email: "abc@gmail.com", number: "1234567890", city: "", hospital: "", doctor: "", time: "", address: "Vastral, Ahmedabad", appointmentid: "112271"
     });
 
     const getDetails = async () => {
@@ -38,6 +38,7 @@ const Bookanappointment = () => {
         const token = localStorage.getItem("token");
         if (!token) {
             alert("Please login first");
+            return;
         }
         const res = await fetch("/api/appointment/bookanappointment", {
             method: "POST",
