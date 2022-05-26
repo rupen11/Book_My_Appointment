@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { useDispatch } from "react-redux";
+import { getUser } from "../services/actions/index";
 
 const Signup = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [userCredential, setUserCredential] = useState({
         name: "",
@@ -66,7 +69,8 @@ const Signup = () => {
                 text: json.message,
                 icon: 'success',
                 confirmButtonText: 'GO There!'
-            })
+            });
+            dispatch(getUser(json.data));
             navigate("/");
         }
         else {

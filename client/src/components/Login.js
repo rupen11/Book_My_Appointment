@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { useDispatch } from "react-redux";
+import { getUser, logOut } from "../services/actions/index";
 
 const Login = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const [userCredential, setUserCredential] = useState({
         number: "",
         otp: ""
@@ -53,7 +57,7 @@ const Login = () => {
             body: JSON.stringify(userCredential)
         })
 
-        const json = await res.json();
+        const json = await res.json()
         if (res.status === 200) {
             localStorage.setItem("token", json.token);
             Swal.fire({
@@ -61,7 +65,9 @@ const Login = () => {
                 text: json.message,
                 icon: 'success',
                 confirmButtonText: 'GO There!'
-            })
+            });
+            dispatch(getUser(json.data));
+            dispatch(logOut(true));
             navigate("/");
         }
         else {

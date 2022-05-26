@@ -11,20 +11,23 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import MainState from './context/contextbox/MainState';
 
 function App() {
   return (
     <>
-      <Header />
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/appointments' element={<Appointments />} />
-        <Route exact path='/bookanappointment' element={<Bookanappointment />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/signup' element={<Signup />} />
-        <Route path='*' element={<Error />} />
-      </Routes>
-      <Footer />
+      <MainState>
+        <Header />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/appointments' element={<Appointments />} />
+          <Route exact path='/bookanappointment' element={<Bookanappointment />} />
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/signup' element={<Signup />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+        <Footer />
+      </MainState>
     </>
   );
 }
